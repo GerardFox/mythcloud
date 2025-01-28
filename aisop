@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Web Chat Embed</title>
+    <style>
+
+
+        /* List and Link styling */
+        /* Numbers */
+        #webchat ol,
+        #webchat .markdown ol {
+            margin: 0 !important;
+            padding-left: 10px !important;
+              font-family: 'Inter', sans-serif !important;
+    font-size: 16px !important;
+    line-height: 1.4 !important;
+    font-weight: 700 !important;
+        }
+      
+        /*Bullets */
+        #webchat ul,
+        #webchat .markdown ul,{
+            margin: 0 !important;
+            padding-left: 3em !important;
+        }
+
+      
+        #webchat li,
+        #webchat .markdown li {
+            margin: 0 !important;
+            padding: 0 !important;
+            display: list-item !important;
+        }
+
+        #webchat li + li,
+        #webchat .markdown li + li {
+            margin-top: 0 !important;
+        }
+
+        #webchat a,
+        #webchat .markdown a {
+            display: inline !important;
+            margin: 0 !important;
+            padding: 0 !important;
+        }
+
+        #webchat p + a,
+        #webchat .markdown p + a,
+        #webchat li + a,
+        #webchat .markdown li + a {
+            margin-top: 0 !important;
+        }
+
+        #webchat li:last-child,
+        #webchat .markdown li:last-child {
+            margin-bottom: 1em !important;
+        }
+
+        #webchat li br,
+        #webchat .markdown li br {
+            display: none !important;
+            margin-bottom: 0em !important;
+        }
+
+/* Base styles with higher specificity */
+#webchat .webchat__basic-transcript *,
+#webchat .webchat__bubble-text *,
+#webchat .webchat__basic-send-box *,
+#webchat .webchat__bubble *,
+#webchat .webchat__send-box__main *,
+#webchat .webchat__sendbox *,
+    font-family: 'Inter', sans-serif !important;
+    font-size: 16px !important;
+    line-height: 1.4 !important;
+    font-weight: 400 !important;
+    color: #171B17 !important;
+}
+
+/* Large desktop screens */
+@media screen and (min-width: 1200px) {
+    #webchat .webchat__basic-transcript *,
+    #webchat .webchat__bubble-text *,
+    #webchat .webchat__send-box__main * {
+        font-size: 16px !important;
+    }
+}
+
+/* Medium desktop and tablet landscape */
+@media screen and (max-width: 1199px) and (min-width: 768px) {
+    #webchat .webchat__basic-transcript *,
+    #webchat .webchat__bubble-text *,
+    #webchat .webchat__send-box__main * {
+        font-size: 16px !important;
+    }
+}
+
+/* Tablet portrait */
+@media screen and (max-width: 767px) and (min-width: 481px) {
+    #webchat .webchat__basic-transcript *,
+    #webchat .webchat__bubble-text *,
+    #webchat .webchat__send-box__main * {
+        font-size: 14px !important;
+    }
+}
+
+/* Mobile devices */
+@media screen and (max-width: 480px) {
+    #webchat .webchat__basic-transcript *,
+    #webchat .webchat__bubble-text *,
+    #webchat .webchat__send-box__main * {
+        font-size: 13px !important;
+    }
+}
+
+/* Small mobile devices */
+@media screen and (max-width: 320px) {
+    #webchat .webchat__basic-transcript *,
+    #webchat .webchat__bubble-text *,
+    #webchat .webchat__send-box__main * {
+        font-size: 12px !important;
+    }
+}
+
+/* CITATIONS */
+      .webchat__link-definitions__header {
+        padding-top: 2em;
+        padding-left: 3em;
+        padding-bottom: 1em;
+        font-size: 11px !important;
+}
+
+      .webchat__link-definitions__header-text {
+    font-size: 11px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    color: #6e6e6e; /* Example mid-grey colour */
+}
+
+      .webchat__link-definitions__list {
+   background-color: transparent !important;
+   border: none !important;
+   outline: none !important;
+   box-shadow: none !important;
+}
+      
+     
+    .webchat__link-definitions__list-item {
+        padding-left: 2em;
+             padding-right: 2em;
+}
+      
+      webchat--css-egvyj-2rztaz.webchat__link-definitions .webchat__link-definitions__list {
+display: flex;
+flex-direction: row;
+row-gap: 0px;
+column-gap: 0px;
+margin-top: 0px;
+margin-right: 0px;
+margin-bottom: 0px;
+padding-top: 0px;
+}
+
+      
+      
+.webchat__link-definitions__list-item-box {
+    background-color: transparent !important;
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important; /* Just in case the stroke is implemented as a shadow */
+    border-top: 1px solid #b4b4b4 !important; /* Medium grey top border only */
+    border-radius: 0 !important; /* Removes corner radius */
+    transition: background-color 0.3s ease; /* Smooth transition for background change */
+}
+
+.webchat__link-definitions__list-item-box:hover {
+    background-color: #b4b4b4 !important; /* Black tint background on hover */
+}
+}
+
+/* If needed, also target the --as-link modifier */
+.webchat__link-definitions__list-item-box--as-link {
+    background-color: transparent !important;
+}
+
+.webchat__link-definitions__list-item-text {
+   font-size: 11px !important;
+   text-decoration: none !important;
+}
+
+/* In case the text-decoration is on an anchor tag within this div */
+.webchat__link-definitions__list-item-text a {
+   text-decoration: none !important;
+}
+
+.webchat__link-definitions__badge {
+    background-color: transparent !important;
+    font-family: 'Inter', sans-serif !important;
+    font-weight: 700 !important;
+    font-size: 11px !important;
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important; /* Just in case the stroke is implemented as a shadow */
+}
+
+/* Customising the appearance of the new SVG arrow icon */
+.webchat__text-content__open-in-new-window-icon {
+  width: 16px;
+  height: 16px;
+  fill: #4CAF50; /* Default green colour */
+  transition: fill 0.3s ease;
+}
+
+/* Hover effect for colour change */
+.webchat__text-content__open-in-new-window-icon:hover {
+  fill: #FF6347; /* Change to tomato red on hover */
+}
+
+
+      
+
+        /* Enhanced heading styles with zero bottom margin and enforced weight */
+        #webchat h1,
+        #webchat h2,
+        #webchat h3,
+        #webchat h4,
+        #webchat h5,
+        #webchat h6,
+        #webchat .webchat__bubble-text h1,
+        #webchat .webchat__bubble-text h2,
+        #webchat .webchat__bubble-text h3,
+        #webchat .webchat__bubble-text h4,
+        #webchat .webchat__bubble-text h5,
+        #webchat .webchat__bubble-text h6,
+        #webchat .markdown h1,
+        #webchat .markdown h2,
+        #webchat .markdown h3,
+        #webchat .markdown h4,
+        #webchat .markdown h5,
+        #webchat .markdown h6,
+        #webchat [class*="markdown"] h1,
+        #webchat [class*="markdown"] h2,
+        #webchat [class*="markdown"] h3,
+        #webchat [class*="markdown"] h4,
+        #webchat [class*="markdown"] h5,
+        #webchat [class*="markdown"] h6 {
+            color: #171B17 !important;
+            font-family: 'Inter', sans-serif !important;
+            line-height: 1.4 !important;
+            margin: 0 0 0 0 !important;
+            padding: 0 !important;
+            font-weight: 700 !important;
+            display: block !important;
+        }
+
+        /* Force font weight for headers */
+        #webchat [class*="markdown"] h1 *,
+        #webchat [class*="markdown"] h2 *,
+        #webchat [class*="markdown"] h3 *,
+        #webchat [class*="markdown"] h4 *,
+        #webchat [class*="markdown"] h5 *,
+        #webchat [class*="markdown"] h6 * {
+            font-weight: 700 !important;
+        }
+
+        /* Remove extra spacing after headers */
+        #webchat h1 + p,
+        #webchat h2 + p,
+        #webchat h3 + p,
+        #webchat h4 + p,
+        #webchat h5 + p,
+        #webchat h6 + p,
+        #webchat .markdown h1 + p,
+        #webchat .markdown h2 + p,
+        #webchat .markdown h3 + p,
+        #webchat .markdown h4 + p,
+        #webchat .markdown h5 + p,
+        #webchat .markdown h6 + p {
+            margin-top: 0 !important;
+            margin-bottom: 0 !important;
+        }
+
+        /* Improved line break and spacing handling */
+        #webchat .webchat__bubble-text,
+        #webchat .webchat__bubble-text p,
+        #webchat .markdown p {
+            white-space: normal !important;
+            margin: 0 !important;
+            padding: 0 !important;
+        }
+
+        /* Remove extra spacing from line breaks */
+        #webchat .webchat__bubble-text br,
+        #webchat .markdown br {
+            content: " " !important;
+            display: inline !important;
+            margin: 0 !important;
+            padding: 0 !important;
+        }
+
+        /* Adjust paragraph spacing */
+        #webchat .webchat__bubble-text p + p,
+        #webchat .markdown p + p {
+            margin-top: 0em !important;
+        }
+
+        /* Additional strong tag enforcement */
+        #webchat strong,
+        #webchat b,
+        #webchat .markdown strong,
+        #webchat .markdown b {
+            font-weight: 700 !important;
+        }
+
+        #webchat {
+            width: 100% !important;
+            height: 100% !important;
+            background-color: black !important;
+        }
+
+        /* Bubble styling */
+        #webchat .webchat__bubble {
+            max-width: 90% !important;
+            width: auto !important;
+            border: none !important;
+            box-shadow: none !important;
+            margin-left: 0px !important;
+            padding: 0px;
+            /* margin-right: auto !important; */
+            background-color: #e2e2e2 !important;
+            border-radius: 15px !important;
+        }
+
+        #webchat .webchat__bubble--from-user {
+            margin-left: auto !important;
+            margin-right: 0 !important;
+            background-color: #f2f2f2 !important;
+            border-radius: 15px !important;
+        }
+
+/* Send box styling */
+#webchat .webchat__send-box__main {
+    display: flex !important;
+    align-items: flex-end !important;
+    border-radius: 15px !important;
+    border: none !important;
+  margin-top: 5px;
+  margin-bottom: 0px;
+  margin-right: 10px;
+  margin-left: 10px;
+    background-color: #f2f2f2 !important;
+    min-height: 40px !important;
+    padding: 15px 10px !important;
+    position: relative !important; /* Added */
+}
+
+/* Text input container */
+#webchat .webchat__send-box__text-box {
+    flex: 1 1 auto !important;
+    min-height: 20px !important;
+}
+
+/* Button group container */
+#webchat .webchat__send-box-button-group {
+    display: flex !important;
+    position: absolute !important; /* Added */
+    bottom: 15px !important; /* Match bottom padding */
+    right: 10px !important; /* Match right padding */
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+/* Individual buttons */
+#webchat .webchat__send-box-button-group > * {
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+
+        /* Suggested actions styling */
+        #webchat .webchat__suggested-action-container {
+            margin-left: 0 !important;
+            padding-left: 0px !important;
+            font-weight: 400 !important;
+        }
+
+        #webchat .webchat__suggested-action {
+            line-height: 1.4 !important;
+            font-weight: 400 !important;
+            border-radius: 15px !important;
+            background-color: #232323 !important;
+            border: none !important;
+            padding: 25px 30px !important;
+            transition: background-color 0.3s ease !important;
+        }
+
+        #webchat .webchat__suggested-action * {
+            color: #878787 !important;
+        }
+
+        #webchat .webchat__suggested-action:hover {
+            background-color: rgb(0, 255, 0) !important;
+                      color: #000000 !important;
+
+        }
+
+        @media (max-width: 800px) {
+            #webchat .webchat__send-box__main {
+                margin: 0 10px !important;
+            }
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="webchat" role="main"></div>
+    <script src="https://cdn.botframework.com/botframework-webchat/latest/webchat.js"></script>
+  
+    <script>
+        (async function () {
+            function fontFamily(fonts) {
+                return fonts.map(font => `'${font}'`).join(', ');
+            }
+            
+            const styleOptions = {
+                // Font Configuration
+                primaryFont: fontFamily(['Inter', 'sans-serif']),
+                fontFamily: fontFamily(['Inter', 'sans-serif']),
+              fontSizeSmall: '62%',
+
+            
+                // CHAT WINDOW
+                accent: '#606060',
+                backgroundColor: 'black',
+                BorderRadius: 0,
+                paddingRegular: 10,
+                paddingWide: 10,
+                subtle: '#AAAAAA',
+                borderRadius: 15,
+                
+                // Bot bubble styling
+                bubbleBackground: '#cbcbcb', 
+                bubbleBorderRadius: 15,
+                bubbleBorderWidth: 0,
+                bubbleBorderColor: 'transparent',
+                bubbleFontColor: '#e2e2e2', 
+                bubbleFontWeight: 80,
+ bubbleFontSize: 'inherit',
+                bubbleTextColor: '#171B17', 
+                
+                // User bubble styling
+                bubbleFromUserBackground: '#f2f2f2', 
+                bubbleFromUserBorderRadius: 15,
+                bubbleFromUserBorderColor: 'transparent',
+                bubbleFromUserBorderWidth: 0,
+                bubbleFromUserTextColor: '#171B17',
+                
+                // Suggested Action styling
+                suggestedActionBorderRadius: 15,
+                suggestedActionBorderWidth: 0,
+                
+    sendBoxBackground: '#f2f2f2',
+    sendBoxTextColor: '#e2e2e2',
+    sendBoxBorderWidth: 0,
+    sendBoxBorderColor: 'transparent',
+    sendBoxFontWeight: 80,
+    sendBoxFontSize: 'inherit',
+    sendBoxHeight: 40,
+    sendBoxMaxHeight: false, // Changed from true
+    sendBoxTextWrap: true,
+    sendBoxButtonAlignment: 'bottom', // Added
+    sendBoxPlaceholderAlignment: 'bottom', // Added
+    sendBoxButtonColor: '#171B17', // Optional - for consistency
+    sendBoxButtonHeight: 24, // Optional - adjust as needed
+    sendBoxButtonAlignment: 'stretch', // Try this
+    hideUploadButton: false, // Optional - confirm if you want this visible
+    
+    // You might also want to add
+    sendBoxVerticalScrollBehavior: 'auto',
+
+                // Citation styling
+                citationBackground: 'transparent',
+                citationBorderColor: 'transparent',
+                citationTextColor: '#171B17',
+                citationFontFamily: fontFamily(['IBM Plex Sans', 'sans-serif']),
+                citationFontSize: 'inherit',
+                citationFontWeight: 'inherit',
+                citationBorderWidth: 0,
+                
+                suggestedActionLayout: 'flow',
+              
+              messageActivityWordBreak: 'normal',
+              markdownRespectCRLF: false,
+              richCardWrapTitle: false,
+
+              // Emoji
+  emojiSet: true,
+
+
+            };
+
+          
+            const tokenEndpointURL = new URL('https://defaultda7d957b15114a42b2f578f847f8c8.7a.environment.api.powerplatform.com/powervirtualagents/botsbyschema/cr91b_aISop/directline/token?api-version=2022-03-01-preview');
+
+            const locale = document.documentElement.lang || 'en';
+            const apiVersion = tokenEndpointURL.searchParams.get('api-version');
+
+            const [directLineURL, token] = await Promise.all([
+                fetch(new URL(`/powervirtualagents/regionalchannelsettings?api-version=${apiVersion}`, tokenEndpointURL))
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Failed to retrieve regional channel settings.');
+                        }
+                        return response.json();
+                    })
+                    .then(({ channelUrlsById: { directline } }) => directline),
+                fetch(tokenEndpointURL)
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Failed to retrieve Direct Line token.');
+                        }
+                        return response.json();
+                    })
+                    .then(({ token }) => token)
+            ]);
+
+            const directLine = WebChat.createDirectLine({ domain: new URL('v3/directline', directLineURL), token });
+
+            const subscription = directLine.connectionStatus$.subscribe({
+                next(value) {
+                    if (value === 2) {
+                        directLine
+                            .postActivity({
+                                localTimezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+                                locale,
+                                name: 'startConversation',
+                                type: 'event'
+                            })
+                            .subscribe();
+
+                        subscription.unsubscribe();
+                    }
+                }
+            });
+            WebChat.renderWebChat({ directLine, locale, styleOptions }, document.getElementById('webchat'));
+        })();
+      
+      
+      
+      
+    </script>
+</body>
+</html>
